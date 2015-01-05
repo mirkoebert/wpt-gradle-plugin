@@ -9,6 +9,8 @@ public final class WptTest implements Plugin<Project> {
 	@Override
 	public void apply(Project project) {
 		System.out.println("Hello Gradle Plugin User, this is Java.");
+		project.getTasks().create("wptTask", WptTask.class);
 	}
 
+	
 }
