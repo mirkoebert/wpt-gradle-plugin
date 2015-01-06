@@ -19,12 +19,13 @@ public class WptTask extends DefaultTask {
 	
 	private String testurl = "www.ebert-p.com";
 	private int maxdoccomlete = 600;
-	private String wpturl="http://exp.server01.otto.wpt.iteratec.de";
-	private String completeUrl =wpturl+"/runtest.php?url="+testurl+"&f=xml&runs=1&video=0&web10=0&noscript=0&clearcerts=0&ignoreSSL=0&standards=0&tcpdump=0&bodies=0&continuousVideo=0&label=label-of-measurement&location=otto-exp-netlab:Firefox.Native";
+	private String wpturl="http://set-wpt-server-as-gradle-task-parameter.error";
 	
 	@TaskAction
     public void wptTask() throws Exception {
-        System.out.println("Java: Hello from wptTask: "+testurl+" "+maxdoccomlete);
+		String completeUrl = wpturl + "/runtest.php?url="+testurl+"&f=xml&runs=1&video=0&web10=0&noscript=0&clearcerts=0&ignoreSSL=0&standards=0&tcpdump=0&bodies=0&continuousVideo=0&label=label-of-measurement&location=otto-exp-netlab:Firefox.Native";
+		System.out.println("Java: Hello from wptTask: "+testurl+" "+maxdoccomlete);
+       
         URL url = new URL(completeUrl);
         File f1 = new File("job.xml");
         FileUtils.copyURLToFile(url, f1 );
@@ -66,4 +67,8 @@ public class WptTask extends DefaultTask {
 		maxdoccomlete = Integer.parseInt(para);
 	}
 
+	public void wpturl(String para){
+		// TODO remove trailing slash
+		wpturl = para;
+	}
 }
