@@ -19,6 +19,7 @@ public class WptTask extends DefaultTask {
 	private int maxdoccomlete = 600;
 	private String wpturl="http://set-wpt-server-as-gradle-task-parameter.error";
 	private String location="set-wpt-location-as-gradle-task-parameter-error";
+	private boolean failOnError = false;
 	
 	@TaskAction
     public void wptTask() throws Exception {
@@ -47,7 +48,14 @@ public class WptTask extends DefaultTask {
 				testresult++;
 			}
 		}
-        System.out.println("Test Result: " +testresult);
+        
+        
+        String errormesg = "WPT test time limit for doccomplete exceeded: "+testresult+" times.";
+        if(failOnError){
+        	throw new Exception(errormesg);
+        } else {
+        	System.out.println(errormesg);
+        }
     }
 
 	
@@ -69,4 +77,8 @@ public class WptTask extends DefaultTask {
 		location = para;
 	}
 
+	public void failOnError(String para){
+		failOnError = Boolean.parseBoolean(para);
+	}
 }
+
