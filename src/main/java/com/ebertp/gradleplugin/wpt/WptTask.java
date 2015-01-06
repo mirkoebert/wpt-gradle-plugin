@@ -1,5 +1,6 @@
 package com.ebertp.gradleplugin.wpt;
 
+import java.io.File;
 import java.net.URL;
 import java.util.Vector;
 
@@ -9,6 +10,7 @@ import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathFactory;
 
+import org.apache.commons.io.FileUtils;
 import org.gradle.api.DefaultTask;
 import org.gradle.api.tasks.TaskAction;
 import org.w3c.dom.Document;
@@ -35,10 +37,11 @@ public class WptTask extends DefaultTask {
         XPath xpath = xPathfactory.newXPath();
         XPathExpression expr = xpath.compile("//summaryCSV/text()");
         String u = expr.evaluate(doc);
-        
+        System.out.println("WPT Result URL "+u);
         Thread.sleep(55000);
 
         URL urlu = new URL(u);
+        FileUtils.copyURLToFile(urlu, new File("wpt_test_data.csv"));
         WptHelper wh = new WptHelper();
         Vector<Integer> doccomplete = wh.extractDoccompleteFromCsvInputStream(urlu.openStream());
         
@@ -52,7 +55,8 @@ public class WptTask extends DefaultTask {
         
         String errormesg = "WPT test time limit for doccomplete exceeded: "+testresult+" times.";
         if(failOnError){
-        	throw new Exception(errormesg);
+        	//FileUtils.copyURLToFile(urlu, new File("wpt_test_data.csv"));
+        	//throw new Exception(errormesg);
         } else {
         	System.out.println(errormesg);
         }
