@@ -8,15 +8,14 @@ Gradle Plugin to use WPT as an test tool.
 Usage
 -----
 
-
 	buildscript {
         	repositories {
                 	maven { url "http://nexus.yourcompany.de:8080/content/groups/public" }
-                	maven { url "http://repo.gradle.org/gradle/libs-releases-local" }
         	}
 
         	dependencies {
                 	classpath "de.otto:lpt-gradle-plugin:0.0.19-SNAPSHOT"
+			//classpath files('../wpt-gradle-plugin/target/lpt-gradle-plugin-0.0.19-SNAPSHOT.jar')
         	}
 	}
 
