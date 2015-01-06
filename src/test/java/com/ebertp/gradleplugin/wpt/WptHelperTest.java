@@ -21,9 +21,6 @@ public class WptHelperTest {
 		File f = new File("page_data.csv");
 		Vector<Integer> v = wh.extractDoccompleteFromCSV(f);
 		assertTrue(v.size()>0);
-		//String s1 = v.get(0);
-		//s1 = s1.replaceAll("\"", "");
-		//int i1 = Integer.parseInt(s1);
 		assertEquals(677, v.get(0).intValue());
 	}
 
