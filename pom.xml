@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.otto</groupId>
 	<artifactId>lpt-gradle-plugin</artifactId>
-	<version>0.0.19-SNAPSHOT</version>
+	<version>0.0.20-SNAPSHOT</version>
 	<description>Gradle Plugin to run a single WPT test.</description>
 	<prerequisites>
 		<maven>3.1.1</maven>
@@ -11,6 +11,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<ditribution.base.url>set-the-property-via-command-line-option-Dditribution.base.url=...</ditribution.base.url>
 	</properties>
 	<developers>
 		<developer>
@@ -98,11 +99,11 @@
 	<distributionManagement>
 		<snapshotRepository>
 			<id>otto-repository-snapshot</id>
-			<url>http://nexus.lhotse.ov.otto.de:8080/content/repositories/snapshots/</url>
+			<url>${ditribution.base.url}/content/repositories/snapshots/</url>
 		</snapshotRepository>
 		<repository>
 			<id>otto-repository-release</id>
-			<url>http://nexus.lhotse.ov.otto.de:8080/content/repositories/releases/</url>
+			<url>${ditribution.base.url}/content/repositories/releases/</url>
 		</repository>
 	</distributionManagement>
 
