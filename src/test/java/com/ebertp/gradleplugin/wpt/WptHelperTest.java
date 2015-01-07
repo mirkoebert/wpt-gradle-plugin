@@ -19,12 +19,12 @@ public class WptHelperTest {
 
 	@Test
 	public void testExtractDoccompleteFromCSV() throws IOException{
-		WptHelper wh = new WptHelper();
-		//File f = new File("page_data.csv");
 		URL u = ClassLoader.getSystemResource("page_data.csv");
 		System.out.println("XX "+u);
 		InputStream f = ClassLoader.getSystemResourceAsStream("page_data.csv");
-		Vector<Integer> v = wh.extractDoccompleteFromCsvInputStream(f);
+
+		WptHelper wh = new WptHelper(f);
+		Vector<Integer> v = wh.extractDoccomplete("32");
 		assertTrue(v.size()>0);
 		assertEquals(693, v.get(0).intValue());
 	}

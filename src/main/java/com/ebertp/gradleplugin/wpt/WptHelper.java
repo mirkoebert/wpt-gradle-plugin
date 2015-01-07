@@ -10,22 +10,33 @@ import java.io.InputStreamReader;
 import java.util.Vector;
 
 class WptHelper {
+	
+	private InputStream is;
 
-	protected Vector<Integer> extractDoccompleteFromCsvInputStream(InputStream f2) throws IOException{
+	public WptHelper(File resultfile) throws FileNotFoundException {
+		is = new FileInputStream(resultfile);
+	}
+
+	public WptHelper(InputStream f) {
+		is = f;
+	}
+
+	protected Vector<Integer> extractDoccomplete(String colnr) throws IOException{
+		int col = Integer.parseInt(colnr);
 		Vector<String> doccompleteS = new Vector<String>();
-        BufferedReader br = new BufferedReader(new InputStreamReader(f2));
+        BufferedReader br = new BufferedReader(new InputStreamReader(is));
         String line;
         boolean firstline =true;
         while ((line = br.readLine()) != null) {
         	if(!firstline){
         		// process the line.
         		String[] result = line.split(",");
-        		System.out.println(result[32]);
-        		doccompleteS.addElement(result[32]);;
+        		//System.out.println(result[32]);
+        		doccompleteS.addElement(result[col]);;
         	}
         	firstline = false;
         }
-        br.close();
+        //br.close();
         
         Vector<Integer> doccomplete = new Vector<Integer>();
         for (String s1 : doccompleteS) {
@@ -36,10 +47,5 @@ class WptHelper {
         return doccomplete;
 	}
 	
-	protected Vector<Integer> extractDoccompleteFromCSV(File f2)
-			throws FileNotFoundException, IOException {
-		FileInputStream is = new FileInputStream(f2);
-		return extractDoccompleteFromCsvInputStream(is);
-	}
 
 }
