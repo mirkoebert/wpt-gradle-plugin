@@ -17,7 +17,6 @@ import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
 import org.gradle.api.DefaultTask;
 import org.gradle.api.tasks.TaskAction;
 import org.w3c.dom.Document;
@@ -84,7 +83,9 @@ public class WptTask extends DefaultTask {
 				testresult++;
 			}
 		}
-        System.out.println(doccompletelist);
+        if(!doccompletelist.isEmpty()){
+        	System.out.println(doccompletelist);
+        }
 		return testresult;
 	}
 

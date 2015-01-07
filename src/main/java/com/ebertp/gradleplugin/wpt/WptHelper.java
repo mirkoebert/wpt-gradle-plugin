@@ -31,12 +31,10 @@ class WptHelper {
         	if(!firstline){
         		// process the line.
         		String[] result = line.split(",");
-        		//System.out.println(result[32]);
         		doccompleteS.addElement(result[col]);;
         	}
         	firstline = false;
         }
-        //br.close();
         
         Vector<Integer> doccomplete = new Vector<Integer>();
         for (String s1 : doccompleteS) {
